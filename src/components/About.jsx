@@ -7,7 +7,7 @@ import slider3 from '../assets/slider.c.jpg'
 
 const About = () => {
   return (
-     <Container className='py-5 about'>
+     <Container className='py-5 about' id="about">
       <Row className='align-items-center'>
         <Col md={6} sm={12}>
         <img src={slider3} alt=""width="100%"/></Col>

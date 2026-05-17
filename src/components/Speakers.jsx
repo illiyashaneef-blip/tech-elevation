@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Row } from 'react-bootstrap'
 import slider76 from '../assets/speak1.jpeg'
 import slider65 from '../assets/speak2.jpeg'
@@ -18,7 +18,7 @@ image: slider76
 
   },
   {
-    id:1,
+    id:2,
 name:"AMINT JIMOH",
 role:"Data and business Analyst",
 image:slider65
@@ -26,7 +26,7 @@ image:slider65
 
   },
   {
-    id:1,
+    id:3,
 name:"ABDUL GANIYU OLAGUNJU",
 role:"Data and business Analyst",
 image:slider45
@@ -35,14 +35,14 @@ image:slider45
 
   },
   {
-id:1,
+id:4,
 name:"modesta uzo",
 role:"Data and business Analyst",
 image:slider34
 
   },
   {
-  id:1,
+  id:5,
 name:"OLUWADAMILOLA GBADAMOSI",
 role:"Data and business Analyst",
 image:slider99
@@ -58,29 +58,46 @@ image:slider99
 
 
 const Speakers =() =>{
+
+ const [activeId, setActiveId] = useState(1);
+
+
+
+
+
   return(
-    <Container>
+    <Container className='speakers-section'>
       <div>
         <h2>Featured speakers</h2>
         <p> Learn From experienced professionals shaping the tech industry</p>
       </div>
-      <Row>
-        {speakers.map((speaker) => (
-          <div key={speakers.id} className='col-12 col-md-6 col-1g-4'>
-          <div>
-            <img src={speaker.image} alt=""  />
-             
-            <div>
-          <h5>{speaker.name}</h5>
-          <p>{speaker.role}</p>
+      <div className="speaker-container">
+      {speakers.map((speaker) => {
+        const isActive = speaker.id === activeId;
+
+        return (
+          
+          <div
+            key={speaker.id}
+            className={`speaker-card ${isActive ? "active" : ""}`}
+            onClick={() => setActiveId(speaker.id)}
+          >
+            <img src={speaker.image} alt={speaker.name} />
+
+            {/* Overlay */}
+            <div className="overlay">
+              {isActive && (
+                <>
+                  <h4>{speaker.name}</h4>
+                  <p>{speaker.role}</p>
+                </>
+              )}
             </div>
           </div>
-          </div>
+        );
+      })}
+    </div>
 
-        ))
-
-        }
-      </Row>
     </Container>
   )
     
